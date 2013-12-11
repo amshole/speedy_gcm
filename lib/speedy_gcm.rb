@@ -43,7 +43,8 @@ module SpeedyGCM
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-        resp, dat = http.post(url.path, message_opts.to_json, headers)
+        resp = http.post(url.path, message_opts.to_json, headers)
+        dat = resp.body
 
         return {:code => resp.code.to_i, :message => dat }
       end
